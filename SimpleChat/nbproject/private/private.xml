@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/ChatClient.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/AbstractClient.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/GuiClientConsole.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/Envelope.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/AbstractServer.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/EchoServer.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/ClientConsole.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/ChatIF.java</file>
+            <file>file:/M:/Comp258/SimpleChat/src/simplechat/ConnectionToClient.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,195 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package simplechat;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.io.IOException;
+import javax.sound.midi.Instrument;
+
+
+
+//import static simplechat.ClientConsole.DEFAULT_PORT;
+
+/**
+ *
+ * @author fairbrother8338
+ */
+public class GuiClientConsole extends JFrame implements ChatIF {
+    
+private JButton closeB = new JButton("Close");
+private JButton openB = new JButton("Open");
+private JButton sendB = new JButton("Send");
+private JButton quitB = new JButton("Quit");
+	
+private JTextField portTxF = new JTextField("5555");
+private JTextField hostTxF = new JTextField("127.0.0.1");
+private JTextField messageTxF = new JTextField("");
+private JTextField userTxF = new JTextField("");
+	
+private JLabel portLB = new JLabel("Port: ", JLabel.RIGHT);
+private JLabel hostLB = new JLabel("Host: ", JLabel.RIGHT);
+private JLabel messageLB = new JLabel("Message: ", JLabel.RIGHT);
+private JLabel userLB = new JLabel("user: ", JLabel.RIGHT);
+	
+private JTextArea messageList = new JTextArea();
+
+private static int DEFAULT_PORT = 5555;
+ChatClient client;
+
+private String host;
+private int port;
+private String user;
+
+public GuiClientConsole (String host, int port, String user)
+{
+		
+		super("Simple Chat GUI");
+		setSize(300, 400);
+		
+		setLayout( new BorderLayout(5,5));
+		Panel bottom = new Panel();
+		add( "Center", messageList );
+		add( "South" , bottom);
+		
+		bottom.setLayout( new GridLayout(6,2,5,5));
+		bottom.add(hostLB); 		bottom.add(hostTxF);
+		bottom.add(portLB);             bottom.add(portTxF);
+		bottom.add(userLB);             bottom.add(userTxF);
+                bottom.add(messageLB); 	        bottom.add(messageTxF);
+		bottom.add(openB); 		bottom.add(sendB);
+		bottom.add(closeB); 		bottom.add(quitB);
+		  	 
+		
+		
+		setVisible(true);
+                
+    sendB.setEnabled(false);
+    closeB.setEnabled(false);
+    
+    sendB.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            send(messageTxF.getText() );
+            messageTxF.setText("");
+           // display(messageTxF.getText() + "\n");
+        }
+    });
+    
+     closeB.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            send("#logOff");
+            
+             sendB.setEnabled(false);
+             closeB.setEnabled(false);
+             openB.setEnabled(true);
+            
+           // display(messageTxF.getText() + "\n");
+        }
+    });
+     
+     openB.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            
+            open();
+            userTxF.setText("");
+            // host = hostTxF.getText();
+            // port = Integer.parseInt(portTxF.getText());
+            
+           // display(messageTxF.getText() + "\n");
+        }
+    });
+     
+     //should have setters...
+     this.host = host;
+     this.port = port;
+     this.user = user;
+     
+     
+      try 
+    {
+     
+    } 
+    catch(Exception exception) 
+    {
+      System.out.println("Error: Can't setup connection!"
+                + " Terminating client.");
+      System.exit(1);
+    }
+
+                
+}
+
+public void send(String msg)
+{
+    client.handleMessageFromClientUI(msg);
+}
+
+public void display( String message ){
+            
+	messageList.append(message+"\n");
+                
+	}
+
+public void open()
+{
+    user = userTxF.getText();
+    
+    sendB.setEnabled(true);
+    closeB.setEnabled(true);
+    openB.setEnabled(false);
+    
+    try{
+     client = new ChatClient(host, port, user, this);
+    }
+    catch(IOException ioe)
+    {
+        ioe.printStackTrace();
+    }
+}
+    
+
+       
+
+public static void main(String[] args) 
+  {
+    String host = "";
+    String user = "";
+    int port = 0;  //The port number
+
+    try
+    {
+     // host = args[0];
+       
+    }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+      host = "localhost";
+    }
+    
+    try
+    {
+      port = Integer.parseInt(args[1]);
+    }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+     port = DEFAULT_PORT;
+    }
+    
+     try
+    {
+      user = args[2];
+    }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+      user = "ANON";
+    }
+    GuiClientConsole chat= new GuiClientConsole(host, port, user);
+    //chat.accept();  //Wait for console data
+  }
+
+
+    
+}
