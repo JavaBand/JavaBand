@@ -29,6 +29,9 @@ public class GuiMusicConsole extends JFrame {
     private JButton noteC2 = new JButton("C2");
     private JButton note9 = new JButton("9");    
     
+    String[] insturments = { "Piano","Guitar", "Drums"};
+    final JComboBox<String> cb = new JComboBox<String>(insturments);
+    
     public GuiMusicConsole ()
 {
 		
@@ -37,8 +40,14 @@ public class GuiMusicConsole extends JFrame {
 		
 		setLayout( new BorderLayout(5,5));
 		Panel bottom = new Panel();
-		add( "Center", noteC );
+                Panel center = new Panel();
+                Panel top = new Panel();
+                
+                add( "North", top );
+		add( "Center", center );
 		add( "South" , bottom);
+                
+                top.add(cb);
 		
 		bottom.setLayout( new GridLayout(3,3,5,5));
                 bottom.add(noteG);  bottom.add(noteB);  bottom.add(noteA); 
