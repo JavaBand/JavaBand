@@ -15,7 +15,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.net.URL;
 
-public class GuiMusicConsole extends JFrame {
+public class GuiMusicConsole extends JFrame implements KeyListener {
     
     private Clip clip;
     
@@ -33,7 +33,9 @@ public class GuiMusicConsole extends JFrame {
     String[] insturments = {"Piano","Guitar","Drum"};
     final JComboBox<String> cb = new JComboBox<String>(insturments);
     
-    public GuiMusicConsole ()
+   
+ 
+    public GuiMusicConsole()
 {
 		
 		super("Simple Music GUI");
@@ -56,23 +58,21 @@ public class GuiMusicConsole extends JFrame {
 		bottom.add(noteA);  bottom.add(noteB);  bottom.add(noteC2);       
                  	        
 		 		
-				
-		  	 
-		
-		
+		setFocusable(true);
 		setVisible(true);
-       
-    
+                addKeyListener(this);
+                
+                
+   
     noteC.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             String notePlayed = buildNote(noteC.getActionCommand());
             playTheSound(notePlayed);
         }
     });
-    
       note9.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-                        String notePlayed = buildNote(note9.getActionCommand());
+                      String notePlayed = buildNote(note9.getActionCommand());
             playTheSound(notePlayed);
         }
     });
@@ -131,6 +131,44 @@ public class GuiMusicConsole extends JFrame {
     });
 
  }
+      public void keyPressed(KeyEvent e) {
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+              noteA.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
+              noteB.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD3) {
+              noteC2.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD4) {
+              note9.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD5) {
+              noteC.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD6) {
+              noteD.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD7) {
+              noteE.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD8) {
+              noteF.doClick();
+          }
+          if (e.getKeyCode() == KeyEvent.VK_NUMPAD9) {
+              noteG.doClick();
+          }
+     }
+      
+      public void keyReleased(KeyEvent e) {
+        
+     }
+      public void keyTyped(KeyEvent e) {
+        
+     }
+      
+      
     
     private void SoundEffect(URL url) {
     try {
