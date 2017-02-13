@@ -25,11 +25,11 @@ public class GuiMusicConsole extends JFrame {
     private JButton noteF = new JButton("F");
     private JButton noteG = new JButton("G");
     private JButton noteA = new JButton("A");
-    private JButton noteB = new JButton("B");
+    private JButton noteB = new JButton("B");   
     private JButton noteC2 = new JButton("C2");
     private JButton note9 = new JButton("9");    
     
-    String[] insturments = { "Piano","Guitar", "Drums"};
+    String[] insturments = { "Piano","Guitar", "drum"};
     final JComboBox<String> cb = new JComboBox<String>(insturments);
     
     public GuiMusicConsole ()
@@ -64,8 +64,8 @@ public class GuiMusicConsole extends JFrame {
     
     noteC.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            
-            playTheSound("piano-c");
+            String notePlayed = buildNote("1");
+            playTheSound(notePlayed);
         }
     });
     
@@ -140,7 +140,11 @@ public class GuiMusicConsole extends JFrame {
         e.printStackTrace();
     } 
 }
-    
+    public String buildNote(String noteNumber){
+        String notePlayed = String.valueOf(cb.getSelectedItem());
+        notePlayed+=noteNumber;
+        return notePlayed;
+    }
     public void playTheSound(String notePlayed) {
 
     URL url = getClass().getResource(notePlayed+".wav");//You can change this to whatever other sound you have
