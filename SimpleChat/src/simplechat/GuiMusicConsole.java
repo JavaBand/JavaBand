@@ -18,18 +18,19 @@ import java.net.URL;
 public class GuiMusicConsole extends JFrame {
     
     private Clip clip;
-   
-    private JButton noteC = new JButton("C");
-    private JButton noteD = new JButton("D");
-    private JButton noteE = new JButton("E");
-    private JButton noteF = new JButton("F");
-    private JButton noteG = new JButton("G");
-    private JButton noteA = new JButton("A");
-    private JButton noteB = new JButton("B");   
-    private JButton noteC2 = new JButton("C2");
-    private JButton note9 = new JButton("9");    
     
-    String[] insturments = { "Piano","Guitar", "drum"};
+    private JButton noteA = new JButton("1");
+    private JButton noteB = new JButton("2");   
+    private JButton noteC2 = new JButton("3");
+    private JButton note9 = new JButton("4");   
+    private JButton noteC = new JButton("5");
+    private JButton noteD = new JButton("6");
+    private JButton noteE = new JButton("7");
+    private JButton noteF = new JButton("8");
+    private JButton noteG = new JButton("9");
+ 
+    
+    String[] insturments = {"Piano","Guitar","Drum"};
     final JComboBox<String> cb = new JComboBox<String>(insturments);
     
     public GuiMusicConsole ()
@@ -48,11 +49,11 @@ public class GuiMusicConsole extends JFrame {
 		add( "South" , bottom);
                 
                 top.add(cb);
-		
+
 		bottom.setLayout( new GridLayout(3,3,5,5));
-                bottom.add(noteG);  bottom.add(noteB);  bottom.add(noteA); 
-		bottom.add(noteD);  bottom.add(noteC);  bottom.add(noteC2);        
-		bottom.add(noteE);  bottom.add(noteF);  bottom.add(note9);       
+                bottom.add(noteE);  bottom.add(noteF);  bottom.add(noteG); 
+		bottom.add(note9);  bottom.add(noteC);  bottom.add(noteD);        
+		bottom.add(noteA);  bottom.add(noteB);  bottom.add(noteC2);       
                  	        
 		 		
 				
@@ -64,28 +65,29 @@ public class GuiMusicConsole extends JFrame {
     
     noteC.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            String notePlayed = buildNote("1");
+            String notePlayed = buildNote(noteC.getActionCommand());
             playTheSound(notePlayed);
         }
     });
     
       note9.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            
-            playTheSound("piano-bb");
+                        String notePlayed = buildNote(note9.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
       
        noteC2.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            
-            playTheSound("piano-eb");
+                        String notePlayed = buildNote(noteC2.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
     
      noteA.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-a");
+        String notePlayed = buildNote(noteA.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
     
@@ -93,19 +95,22 @@ public class GuiMusicConsole extends JFrame {
     
     noteE.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-e");
+            String notePlayed = buildNote(noteE.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
     
     noteF.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-f");
+            String notePlayed = buildNote(noteF.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
     
     noteG.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-g");
+            String notePlayed = buildNote(noteG.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
     
@@ -113,14 +118,15 @@ public class GuiMusicConsole extends JFrame {
     
      noteD.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-d");
+            String notePlayed = buildNote(noteD.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
      
       noteB.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            playTheSound("piano-b");
-      
+            String notePlayed = buildNote(noteB.getActionCommand());
+            playTheSound(notePlayed);
         }
     });
 
