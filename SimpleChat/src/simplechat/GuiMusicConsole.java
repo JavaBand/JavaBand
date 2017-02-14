@@ -29,7 +29,7 @@ public class GuiMusicConsole extends JFrame implements KeyListener {
     private JButton noteF = new JButton("8");
     private JButton noteG = new JButton("9");
     
-    String[] insturments = {"Piano", "Guitar", "Drum"};
+    String[] insturments = {"Piano", "Guitar", "Drum","chipDrum"};
     final JComboBox<String> cb = new JComboBox<String>(insturments);
     
     public GuiMusicConsole() {
