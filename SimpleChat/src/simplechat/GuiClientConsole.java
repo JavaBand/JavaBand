@@ -45,7 +45,7 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
     private JLabel portLB = new JLabel("Port: ", JLabel.RIGHT);
     private JLabel hostLB = new JLabel("Host: ", JLabel.RIGHT);
     private JLabel messageLB = new JLabel("Message: ", JLabel.RIGHT);
-    private JLabel userLB = new JLabel("user: ", JLabel.RIGHT);
+    private JLabel userLB = new JLabel("User: ", JLabel.RIGHT);
 
     private JTextArea messageList = new JTextArea();
 
@@ -146,7 +146,7 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
             }
         });
         
-          quitB.addActionListener(new ActionListener() {
+        quitB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                send("#quit");
             }
