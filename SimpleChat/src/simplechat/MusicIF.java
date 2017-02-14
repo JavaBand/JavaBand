@@ -12,4 +12,7 @@ public interface MusicIF
    * a UI.
    */
   public abstract void sing(String notePlayed);
+  
+  public String buildNote(String noteNumber); 
+  
 }
