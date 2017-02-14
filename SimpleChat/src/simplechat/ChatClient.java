@@ -142,9 +142,17 @@ public class ChatClient extends AbstractClient
            }
            catch(Exception e){
                e.printStackTrace();
-           }
-           
+           }          
        }
+       else if (message.startsWith("#music")) {
+           try{
+              sendToServer(message); 
+           }
+           catch(Exception e){
+               e.printStackTrace();
+           }
+              
+      }
        else{
            try{
            sendToServer(message);

@@ -16,7 +16,7 @@ import javax.sound.midi.Instrument;
  *
  * @author fairbrother8338
  */
-public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
+public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, MusicIF {
 
     private JButton noteA = new JButton("1");
     private JButton noteB = new JButton("2");
@@ -119,13 +119,75 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
             }
         });
 
-        noteC.addActionListener(new ActionListener() {
+        cb.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 setFocus();
-                System.out.println("works, dog");
+            }
+        });
+        noteC.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteC.getActionCommand());
+                sendNote(notePlayed);
 
             }
         });
+        note9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(note9.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteC2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteC2.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteA.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteA.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteE.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteE.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteF.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteF.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteG.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteG.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteD.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteD.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
+        noteB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String notePlayed = buildNote(noteB.getActionCommand());
+                sendNote(notePlayed);
+            }
+        });
+
         sendB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 send(messageTxF.getText());
@@ -145,15 +207,12 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
                 // display(messageTxF.getText() + "\n");
             }
         });
-        
+
         quitB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               send("#quit");
+                send("#quit");
             }
         });
-
-        
-        
 
         openB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -184,6 +243,10 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
 
     public void send(String msg) {
         client.handleMessageFromClientUI(msg);
+    }
+
+    public void sendNote(String notePlayed) {
+        client.handleMessageFromClientUI(notePlayed);
     }
 
     public void display(String message) {
@@ -277,4 +340,16 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
 
     }
 
+    @Override
+    public void sing(String notePlayed) {
+
+    }
+
+    @Override
+    public String buildNote(String noteNumber) {
+        String notePlayed = "#music ";
+        notePlayed += String.valueOf(cb.getSelectedItem());
+        notePlayed += noteNumber;
+        return notePlayed;
+    }
 }
