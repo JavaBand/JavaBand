@@ -9,7 +9,12 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import javax.sound.midi.Instrument;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 //import static simplechat.ClientConsole.DEFAULT_PORT;
 /**
@@ -18,6 +23,7 @@ import javax.sound.midi.Instrument;
  */
 public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, MusicIF {
 
+    private Clip clip;
     private JButton noteA = new JButton("1");
     private JButton noteB = new JButton("2");
     private JButton noteC2 = new JButton("3");
@@ -127,63 +133,63 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, Mus
         });
         noteC.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteC.getActionCommand());
+                Object notePlayed = buildNote(noteC.getActionCommand());
                 sendNote(notePlayed);
 
             }
         });
         note9.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(note9.getActionCommand());
+                Object notePlayed = buildNote(note9.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteC2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteC2.getActionCommand());
+                Object notePlayed = buildNote(noteC2.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteA.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteA.getActionCommand());
+                Object notePlayed = buildNote(noteA.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteE.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteE.getActionCommand());
+                Object notePlayed = buildNote(noteE.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteF.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteF.getActionCommand());
+                Object notePlayed = buildNote(noteF.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteG.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteG.getActionCommand());
+                Object notePlayed = buildNote(noteG.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteD.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteD.getActionCommand());
+                Object notePlayed = buildNote(noteD.getActionCommand());
                 sendNote(notePlayed);
             }
         });
 
         noteB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String notePlayed = buildNote(noteB.getActionCommand());
+                Object notePlayed = buildNote(noteB.getActionCommand());
                 sendNote(notePlayed);
             }
         });
@@ -245,7 +251,7 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, Mus
         client.handleMessageFromClientUI(msg);
     }
 
-    public void sendNote(String notePlayed) {
+    public void sendNote(Object notePlayed) {
         client.handleMessageFromClientUI(notePlayed);
     }
 
@@ -340,16 +346,40 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, Mus
 
     }
 
-    @Override
-    public void sing(String notePlayed) {
-
+    private void SoundEffect(URL url) {
+        try {
+            // Set up an audio input stream piped from the sound file.
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
+            // Get a clip resource.
+            clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioInputStream);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public String buildNote(String noteNumber) {
-        String notePlayed = "#music ";
-        notePlayed += String.valueOf(cb.getSelectedItem());
-        notePlayed += noteNumber;
-        return notePlayed;
+    public void sing(String notePlayed) {
+        
+        URL url = getClass().getResource(notePlayed + ".wav");//You can change this to whatever other sound you have
+        SoundEffect(url);//this method will load the sound
+
+//        if (clip.isRunning()) {
+//            clip.stop();   // Stop the player if it is still running
+//        }
+        clip.setFramePosition(0); // rewind to the beginning
+        clip.start();     // Start playing
+    }
+
+    @Override
+    public Object buildNote(String noteNumber) {
+
+        String instrument = String.valueOf(cb.getSelectedItem());
+        String number = noteNumber;
+        musicEnvelope me = new musicEnvelope(instrument, number);
+        return me;
     }
 }

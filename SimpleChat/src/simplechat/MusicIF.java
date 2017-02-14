@@ -13,6 +13,7 @@ public interface MusicIF
    */
   public abstract void sing(String notePlayed);
   
-  public String buildNote(String noteNumber); 
+  public Object buildNote(String noteNumber);
+  
   
 }
