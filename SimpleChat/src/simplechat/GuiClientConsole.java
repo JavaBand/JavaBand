@@ -263,7 +263,7 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, Mus
 
     public void open() {
         user = userTxF.getText();
-
+        host = hostTxF.getText();
         sendB.setEnabled(true);
         closeB.setEnabled(true);
         openB.setEnabled(false);
