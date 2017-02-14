@@ -269,7 +269,7 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF, Mus
         openB.setEnabled(false);
 
         try {
-            client = new ChatClient(host, port, user, this);
+            client = new ChatClient(host, port, user, this, this);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

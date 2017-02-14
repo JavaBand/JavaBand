@@ -5,9 +5,11 @@
         <group>
             <file>file:/M:/JavaBand/SimpleChat/src/simplechat/ClientConsole.java</file>
             <file>file:/M:/JavaBand/SimpleChat/src/simplechat/GuiClientConsole.java</file>
+            <file>file:/M:/JavaBand/SimpleChat/src/simplechat/musicEnvelope.java</file>
+            <file>file:/M:/JavaBand/SimpleChat/src/simplechat/ChatIF.java</file>
             <file>file:/M:/JavaBand/SimpleChat/src/simplechat/MusicIF.java</file>
-            <file>file:/M:/JavaBand/SimpleChat/src/simplechat/GuiMusicConsole.java</file>
             <file>file:/M:/JavaBand/SimpleChat/src/simplechat/EchoServer.java</file>
+            <file>file:/M:/JavaBand/SimpleChat/src/simplechat/GuiMusicConsole.java</file>
             <file>file:/M:/JavaBand/SimpleChat/src/simplechat/ChatClient.java</file>
         </group>
     </open-files>
