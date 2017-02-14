@@ -20,6 +20,19 @@ import javax.sound.midi.Instrument;
  */
 public class GuiClientConsole extends JFrame implements ChatIF {
     
+  private JButton noteA = new JButton("1");
+  private JButton noteB = new JButton("2");
+  private JButton noteC2 = new JButton("3");
+  private JButton note9 = new JButton("4");
+  private JButton noteC = new JButton("5");
+  private JButton noteD = new JButton("6");
+  private JButton noteE = new JButton("7");
+  private JButton noteF = new JButton("8");
+  private JButton noteG = new JButton("9");    
+  
+  String[] instruments = {"Piano", "Guitar", "Drum","chipDrum"};
+  final JComboBox<String> cb = new JComboBox<String>(instruments);
+    
 private JButton closeB = new JButton("Close");
 private JButton openB = new JButton("Open");
 private JButton sendB = new JButton("Send");
@@ -48,12 +61,18 @@ public GuiClientConsole (String host, int port, String user)
 {
 		
 		super("Simple Chat GUI");
-		setSize(300, 400);
+		setSize(400, 400);
 		
 		setLayout( new BorderLayout(5,5));
 		Panel bottom = new Panel();
 		add( "Center", messageList );
 		add( "South" , bottom);
+                Panel east = new Panel();
+                add("East", east);
+                Panel top = new Panel();
+                add("North", top);
+                
+                top.add(cb);
 		
 		bottom.setLayout( new GridLayout(6,2,5,5));
 		bottom.add(hostLB); 		bottom.add(hostTxF);
@@ -63,7 +82,10 @@ public GuiClientConsole (String host, int port, String user)
 		bottom.add(openB); 		bottom.add(sendB);
 		bottom.add(closeB); 		bottom.add(quitB);
 		  	 
-		
+                east.setLayout( new GridLayout(3,3,5,5));
+                east.add(noteE);    east.add(noteF);    east.add(noteG);
+                east.add(note9);    east.add(noteC);    east.add(noteD);
+                east.add(noteA);    east.add(noteB);    east.add(noteC2);
 		
 		setVisible(true);
                 
