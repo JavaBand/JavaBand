@@ -145,6 +145,15 @@ public class GuiClientConsole extends JFrame implements KeyListener, ChatIF {
                 // display(messageTxF.getText() + "\n");
             }
         });
+        
+          quitB.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               send("#quit");
+            }
+        });
+
+        
+        
 
         openB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
